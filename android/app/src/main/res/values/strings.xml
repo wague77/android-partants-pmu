@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Partants PMU</string>
+    <string name="title_activity_main">Partants PMU</string>
+    <string name="package_name">com.novastudio.partantspmu</string>
+    <string name="custom_url_scheme">com.novastudio.partantspmu</string>
+</resources>

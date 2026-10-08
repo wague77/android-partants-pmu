@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "com.novastudio.partantspmu"
+    compileSdk rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.novastudio.partantspmu"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('release.keystore')
+            storePassword "nova2026pass"
+            keyAlias "release-key"
+            keyPassword "nova2026pass"
+        }
+    }
+
+    buildTypes {
+        release {
+            if (file('release.keystore').exists()) {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+    implementation "androidx.core:core-splashscreen:1.0.1"
+    implementation "androidx.webkit:webkit:1.9.0"
+}
